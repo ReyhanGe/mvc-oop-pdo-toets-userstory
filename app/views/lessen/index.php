@@ -6,6 +6,8 @@
 
 <table border='1'>
     <thead>
+        <p>Auto van Instructeur: </p>
+        <p>E-mail</p>
         <th>Type</th>
         <th>Kenteken</th>
         <th>Km Stand Toevoegen</th>

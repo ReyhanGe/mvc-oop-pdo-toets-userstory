@@ -25,7 +25,7 @@ class Lessen extends Controller
         }
 
         $data = [
-            'title' => "Overzicht Wagenpark ",
+            'title' => "Overzicht Mankementen ",
             'rows' => $rows,
 
         ];
