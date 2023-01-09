@@ -5,6 +5,7 @@
     define('DB_PASS', '');
     define('DB_NAME', 'opdracht6');
 
+    
     // Het pad naar de app map
     define('APPROOT', dirname(dirname(__FILE__)));
 
