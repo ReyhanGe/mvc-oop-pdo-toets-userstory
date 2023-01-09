@@ -12,6 +12,7 @@ class Lessen extends Controller
     {
         $result = $this->lesModel->getLessons();
 
+       
 
         // var_dump($result);
         $rows = '';
