@@ -12,6 +12,19 @@ class Lessen extends Controller
     {
         $result = $this->lesModel->getLessons();
 
+
+        if($result)
+        {
+            $instructeurNaam = $result[0]->INNA;
+            $email = $result[0]->EM;
+            $autoKenteken = $result[0]->AK;
+            $autoType = $result[0]->AT;
+        } else {
+            $instructeurNaam = '';
+            $email = '';
+            $autoType = '';
+            $autoKenteken = '';
+        }
        
 
         // var_dump($result);
@@ -20,9 +33,11 @@ class Lessen extends Controller
             $d = new DateTimeImmutable($info->Datum, new DateTimeZone('Europe/Amsterdam'));
             $rows .= "<tr>
                         <p>$info->Naam</p>
-                        
+                        <p>$info->Email</p>
+                        <p>$info->Kenteken</p>
+
                         <td>{$d->format('d-m-Y')}</td>
-                        <td>$info->Naam</td>
+                        <td>$info->Mankement</td>
                         
                     </tr>";
 
