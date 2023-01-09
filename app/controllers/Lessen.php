@@ -32,9 +32,7 @@ class Lessen extends Controller
         foreach ($result as $info) {
             $d = new DateTimeImmutable($info->Datum, new DateTimeZone('Europe/Amsterdam'));
             $rows .= "<tr>
-                        <p>$info->Naam</p>
-                        <p>$info->Email</p>
-                        <p>$info->Kenteken</p>
+                        
 
                         <td>{$d->format('d-m-Y')}</td>
                         <td>$info->Mankement</td>
