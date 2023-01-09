@@ -16,12 +16,16 @@ class Lessen extends Controller
         // var_dump($result);
         $rows = '';
         foreach ($result as $info) {
-
+            $d = new DateTimeImmutable($info->Datum, new DateTimeZone('Europe/Amsterdam'));
             $rows .= "<tr>
+                        <p>$info->Naam</p>
+                        
+                        <td>{$d->format('d-m-Y')}</td>
                         <td>$info->Naam</td>
-                        <td>$info->Naam</td>
-                        <td><a href='" . URLROOT . "/lessen/topicslesson/{$info->Id}'><img src='" . URLROOT . "/img/b_snewtbl.png' alt='topiclist'></a></td>
+                        
                     </tr>";
+
+                                                        
         }
 
         $data = [
@@ -41,13 +45,13 @@ class Lessen extends Controller
         $rows = "";
         foreach ($result as $topic) {
             $rows .= "<tr>      
-                        <td>$topic->Onderwerp</td>
+                        <td>$topic->Mankement</td>
                       </tr>";
         }
 
 
         $data = [
-            'title' => 'Invoeren Kilometerstand',
+            'title' => 'Invoeren Mankement',
             'rows'  => $rows,
             'lesId' => $lesId,
 
@@ -58,7 +62,7 @@ class Lessen extends Controller
     function addTopic($lesId = NULL)
     {
         $data = [
-            'title' => 'Voer In Kilometerstand',
+            'title' => 'Voer In ',
             'lesId' => $lesId,
             'topicError' => ''
         ];
@@ -68,7 +72,7 @@ class Lessen extends Controller
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
             $data = [
-                'title' => 'Voer In Kilometerstand',
+                'title' => 'Voer In ',
                 'lesId' => $_POST['lesId'],
                 'topic' => $_POST['topic'],
                 'topicError' => ''
@@ -80,9 +84,9 @@ class Lessen extends Controller
                 $result = $this->lesModel->addTopic($_POST);
 
                 if ($result) {
-                    $data['title'] = "<p>De nieuwe kilometerstand is toegevoegd</p>";
+                    $data['title'] = "<p>“Het nieuwe mankement is toegevoegd</p>";
                 } else {
-                    echo "<p>“De nieuwe kilometerstand is niet toegevoegd, probeer het opnieuw</p>";
+                    echo "<p>“De nieuwe mankement is niet toegevoegd, probeer het opnieuw</p>";
                 }
                 header('Refresh:3; url=' . URLROOT . '/lessen/index');
             } else {
@@ -94,8 +98,9 @@ class Lessen extends Controller
 
     private function validateAddTopicForm($data)
     {
-        if (strlen($data['topic']) > 255) {
-            $data['topicError'] = "Het nieuwe onderwerp bevat meer dan 255 letters.";
+        if (strlen($data['topic']) > 50) {
+            $data['topicError'] = "“Het nieuwe mankement is meer dan 50 tekens lang en is niet toegevoegd,
+            probeer het opnieuw.";
         } elseif (empty($data['topic'])) {
             $data['topicError'] = "U bent verplicht dit veld in te vullen.";
         }

@@ -2,7 +2,7 @@
 <h3><?= $data['title']; ?></h3>
 
 <form action="<?= URLROOT ?>/lessen/addTopic" method="post">
-    <label for="topic">Onderwerp</label><br>
+    <label for="topic">Mankement</label><br>
     <input type="text" name="topic" id="topic">
     <div class="topicError"><?= $data['topicError']; ?></div>
     <br>
