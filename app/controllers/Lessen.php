@@ -12,23 +12,11 @@ class Lessen extends Controller
     {
         $result = $this->lesModel->getLessons();
 
-
-        if($result)
-        {
-            $instructeurNaam = $result[0]->INNA;
-            $email = $result[0]->EM;
-            $autoKenteken = $result[0]->AK;
-            $autoType = $result[0]->AT;
-        } else {
-            $instructeurNaam = '';
-            $email = '';
-            $autoType = '';
-            $autoKenteken = '';
-        }
-       
-
         // var_dump($result);
         $rows = '';
+
+        $rows1 = '';
+
         foreach ($result as $info) {
             $d = new DateTimeImmutable($info->Datum, new DateTimeZone('Europe/Amsterdam'));
             $rows .= "<tr>
@@ -39,12 +27,18 @@ class Lessen extends Controller
                         
                     </tr>";
 
+            $rows1 = " Auto van Instructeur: $info->Naam <br>
+                    Email: $info->Email <br>
+                    Kenteken: $info->Kenteken <br>
+                    Type: $info->Type <br>
+        ";
                                                         
         }
 
         $data = [
             'title' => "Overzicht Mankementen ",
             'rows' => $rows,
+            'rows1' => $rows1
 
         ];
         $this->view('lessen/index', $data);
@@ -57,9 +51,9 @@ class Lessen extends Controller
         // var_dump($result);
 
         $rows = "";
-        foreach ($result as $topic) {
+        foreach ($result as $mankement) {
             $rows .= "<tr>      
-                        <td>$topic->Mankement</td>
+                        <td>$mankement->Mankement</td>
                       </tr>";
         }
 
@@ -88,7 +82,7 @@ class Lessen extends Controller
             $data = [
                 'title' => 'Voer In ',
                 'lesId' => $_POST['lesId'],
-                'topic' => $_POST['topic'],
+                'mankement' => $_POST['mankement'],
                 'topicError' => ''
             ];
 
@@ -112,10 +106,10 @@ class Lessen extends Controller
 
     private function validateAddTopicForm($data)
     {
-        if (strlen($data['topic']) > 50) {
+        if (strlen($data['mankement']) > 50) {
             $data['topicError'] = "“Het nieuwe mankement is meer dan 50 tekens lang en is niet toegevoegd,
             probeer het opnieuw.";
-        } elseif (empty($data['topic'])) {
+        } elseif (empty($data['mankement'])) {
             $data['topicError'] = "U bent verplicht dit veld in te vullen.";
         }
 
