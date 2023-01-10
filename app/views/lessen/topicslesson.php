@@ -4,7 +4,6 @@
 
 <table border='1'>
     <thead>
-        <p>Kenteken</p> <p> Type</p>
         <th>
         Mankement
         </th>

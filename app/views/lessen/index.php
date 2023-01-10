@@ -15,9 +15,9 @@
 </table>
 <br>
 <a href="<?= URLROOT; ?>/lessen/topicslesson/{$info->Id}">
-    <input type="button" value=" Voer In">
-</a> 
-   
+    <input type="button" value=" Mankement Toevoegen">
+</a>
+
 </form>
 
 <?php require(APPROOT . '/views/includes/footer.php'); ?>
